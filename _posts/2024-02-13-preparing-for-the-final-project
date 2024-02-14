@@ -1,0 +1,51 @@
+# Why Flask?
+
+At the beginning of our final semester of high school, we started to work with flask to code a social media website using both python and html. Flask was the best for this task since Flask is a web framework written in python which allows for the creation of dynamic web applications that go beyond regular simplistic html websites. True although we could have just used css and Javascript but with python, you would get a much bigger arsenal of creativity for your website since there are many modules that you can also use such as authentication hence the reason we decided to use Flask for our final preparation before our last project of high school. Along with flask, we also used jinja which allows for the utilization of python within an html file. With jinja, it was possible to fully utilize Flask to its full potential and develop a website using both python and html and along with this, jinja also offered additional benefits which was that all python code would NOT be displayed on the actual website whenever a user inspects and that itself offers greater security for the integrity of the website. 
+
+# Resources
+
+Since Flask was a new uncharted area for all of us, we had to learn to be able to put it to use. Flask although was difficult at first, it was relatively the same as using python except with a few differences here and there and because it was similar, we can use older python code we did to help with reference on how to work it out. One of the things that were different was the way we hosted different pages but that was not so difficult to get used to since all coding langauges have their differences. Flask hosts its pages like this:
+```Python 
+@app.route('/')
+def index():
+    if flask_login.current_user.is_authenticated:
+        return redirect('/feed')
+    return render_template("index.html.jinja")
+
+ ```
+
+The page link is determined using the @app.route('')and the link is put inside the parenthesis. What was really weird at first was that flask used functions to return the page that we wished to connect to the route we made intially and its kind of like we are using the link itself to call the function which would in turn display the page. Since flask also used python, I was able to use my todo project which also utilized python as a reference since many of the functions I needed were already present in my todo code. 
+
+# Blockades
+
+Since this was new terrority for us, It was inevitable that i would come across many bugs and challenges. One of my biggest challenges was using a module actually instead of flask and it was the flask login module. This was a challenge for me since it was also new terrority for me and It was hard for me to understand what exactly specific code did. For example:
+```Python
+@login_manager.user_loader
+def load_user(user_id):
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM `users` WHERE `User_id` = {user_id}")
+    result = cursor.fetchone()
+    cursor.close()
+    conn.commit()
+    if result is None:
+        return None
+    
+    return User(result['User_id'], result['Username'],result['Email'],result['Profile Image'])
+```
+
+This was the function required to use the flask login module and I found it in particularly challenging and confusing because I didnt know how classes worked and were structured in particular and why we needed to specify "User" before returning the result. Although I didnt know how it worked exactly, I asked my instructor tried to comprenhend it to the best of my ability. I didnt come across an error as I had followed directions but rather just lacked the understanding for the module and classes. Besides this lack of understanding for the new module, I also struggled with using SQL to call multiple columns and variables. For example :
+
+```python
+cursor.execute(f"INSERT INTO `users`(`Email` , `Password`, `Name`, `User_Bio`, `Username`,`Pronoun`,`Birthday`) VALUES('{email}', '{password}', '{name}', '{bio}', '{username}','{pronoun}', '{birthday}')")
+
+```
+Initially I had tried to bunch everything together without its own seperate ticks/quotation marks and commas like this:
+
+```python
+cursor.execute(f"INSERT INTO `users`(`Email , Password, Name, User_Bio, Username, Pronoun, Birthday`) VALUES('{email, password, name, bio, username, pronoun, birthday}')")
+```
+However that just fed me a type error everything time I tried to run it so eventually I learned that I had to seperate everything the long way. 
+
+# No Comms?
+
+No comms is the silly name of my social media website which im designing with the help of flask and jinja to prepare me for my final project, the capstone project. The name of my social media website was more of a joke for gamers complaining about lack of communication between teammates and ironically the websites purpose is a social media website designed to let users post and communicate with each other. With flask i had built a website that used python modules to allow the user to sign up, sign in using both sql and python within the code. The website also has its own authentication system that we put in place using flask login module. Although its still in its working stages, the finished project should have a feed page that allows users to post and also like said post. Comments are just a plus in the final project if we can get to it. Ive learned many things in this project such as getting used to using sql even if its just a little bit as I had completely forgot how to use sql before. I've also learned how to add python to my html websites to create a much more interesting website than just plain old html. Additionally I've learned how much of a hassle sql could be when executing multiple columns with multiple variables and I learned that the hard way.
